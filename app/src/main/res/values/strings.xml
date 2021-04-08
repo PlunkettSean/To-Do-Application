@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">To Do Application</string>
+    <string name="ToDoEditText_Hint">Enter To Do</string>
+    <string name="AddButton_Text">Add</string>
+    <string name="deleteButton_Text">Delete</string>
+    <string name="toDoTextView_Text">Text View</string>
+</resources>
