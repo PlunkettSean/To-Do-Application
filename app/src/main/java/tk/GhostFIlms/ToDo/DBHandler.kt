@@ -1,5 +1,6 @@
 package tk.GhostFIlms.ToDo
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -58,7 +59,8 @@ SQLiteOpenHelper(context, DATABASE_NAME, cursorFactory, DATABASE_VERSION){
     }
 
     /**
-     *
+     * This method gets called when the add button of the MainActivity gets clicked.
+     * it inserts a new row into the todo table
      * @param todoName
      */
     fun addToDo(todoName: String?) {
@@ -78,6 +80,41 @@ SQLiteOpenHelper(context, DATABASE_NAME, cursorFactory, DATABASE_VERSION){
         //
         db.close()
     }
+
+    /**
+     * This method gets called when the MainActivity is created and when the add and delete buttons
+     * get chlicked
+     * @return MutableList
+     */
+    val todos: MutableList<ToDo>
+        @SuppressLint("Recycle")
+        get() {
+            // get a reference to the todoapp database
+            val db = writableDatabase
+
+            // define select statement
+            val query = "SELECT * FROM " + TABLE_TODO_LIST
+
+            // execute the select statement and store its return in an immutable Cursor
+            val c = db.rawQuery(query, null)
+
+            // create MutableList of ToDos that will be returned by the method
+            val list: MutableList<ToDo> = ArrayList()
+
+            // loop through the rows in the Cursor
+            while(c.moveToNext()) {
+                // create an immutable ToDo using the data in the current row in the cursor
+                val todo = ToDo(c.getInt(c.getColumnIndex("_id")),
+                    c.getString(c.getColumnIndex("name")),
+                    c.getString(c.getColumnIndex("is_checked"))!!.toBoolean())
+                // add the ToDo that was just created into the MutableList of ToDos
+                list.add(todo)
+            }
+
+            db.close()
+
+            return list
+        }
 
     companion object {
         // initialize constants for the DB name and version
