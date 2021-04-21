@@ -16,7 +16,7 @@ SQLiteOpenHelper(context, DATABASE_NAME, cursorFactory, DATABASE_VERSION){
      */
     override fun onCreate(db: SQLiteDatabase) {
         // define create statement for todo table
-        val query = "CREATE_TABLE " + TABLE_TODO_LIST + "(" +
+        val query = "CREATE TABLE " + TABLE_TODO_LIST + "(" +
                 COLUMN_TODO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_TODO_ISCHECKED + " TEXT, " +
                 COLUMN_TODO_NAME + " TEXT);"
@@ -87,12 +87,13 @@ SQLiteOpenHelper(context, DATABASE_NAME, cursorFactory, DATABASE_VERSION){
      * @return MutableList
      */
     val todos: MutableList<ToDo>
+        @SuppressLint("Recycle")
         get() {
             // get a reference to the todoapp database
             val db = writableDatabase
 
             // define select statement
-            val query = "SELECT * FROM" + TABLE_TODO_LIST
+            val query = "SELECT * FROM " + TABLE_TODO_LIST
 
             // execute the select statement and store its return in an immutable Cursor
             val c = db.rawQuery(query, null)
@@ -118,7 +119,7 @@ SQLiteOpenHelper(context, DATABASE_NAME, cursorFactory, DATABASE_VERSION){
     companion object {
         // initialize constants for the DB name and version
         private const val DATABASE_NAME = "todoapp.db"
-        private const val DATABASE_VERSION = 2
+        private const val DATABASE_VERSION = 1
 
         // initialize constants for the todo table
         private const val TABLE_TODO_LIST = "todo"
