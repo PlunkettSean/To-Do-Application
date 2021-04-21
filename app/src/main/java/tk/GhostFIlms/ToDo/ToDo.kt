@@ -10,6 +10,6 @@ data class ToDo (
         var id: Int,
         // declare an inmutable String to declare the todo name
         var name: String,
-        // declare a mutable Boolean to store the todo is
+        // delcare a mutable Boolean to store the todo is
         var isChecked: Boolean = false
 )
