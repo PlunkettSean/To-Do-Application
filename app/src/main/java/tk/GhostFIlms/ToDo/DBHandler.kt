@@ -1,6 +1,5 @@
-package tk.GhostFIlms.ToDo
+package tk.ghostfilms.toDo
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -49,7 +48,7 @@ SQLiteOpenHelper(context, DATABASE_NAME, cursorFactory, DATABASE_VERSION){
      */
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         // define drop statement for the todo table
-        val query = "DROP TABLE IF EXISTS " + TABLE_TODO_LIST
+        val query = "DROP TABLE IF EXISTS $TABLE_TODO_LIST"
 
         // execute drop statement
         db.execSQL(query)
@@ -87,13 +86,12 @@ SQLiteOpenHelper(context, DATABASE_NAME, cursorFactory, DATABASE_VERSION){
      * @return MutableList
      */
     val todos: MutableList<ToDo>
-        @SuppressLint("Recycle")
         get() {
             // get a reference to the todoapp database
             val db = writableDatabase
 
             // define select statement
-            val query = "SELECT * FROM " + TABLE_TODO_LIST
+            val query = "SELECT * FROM $TABLE_TODO_LIST"
 
             // execute the select statement and store its return in an immutable Cursor
             val c = db.rawQuery(query, null)
@@ -111,6 +109,7 @@ SQLiteOpenHelper(context, DATABASE_NAME, cursorFactory, DATABASE_VERSION){
                 list.add(todo)
             }
 
+            c.close()
             db.close()
 
             return list

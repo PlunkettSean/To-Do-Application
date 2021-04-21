@@ -1,4 +1,4 @@
-package tk.GhostFIlms.ToDo
+package tk.ghostfilms.toDo
 
 import android.view.LayoutInflater
 import android.view.View
@@ -116,10 +116,12 @@ class ToDoAdapter (
     /**
      * This method gests called by the addToDo method in the MainActivity when the add button is
      * clicked. It will call the DBHandler method that adds a ToDo into the database.
+     *
+     * safe call on dbHandler is unnecessary
      */
     fun addToDo(dbHandler: DBHandler, name: String) {
-        // ask ktolin to check if the dbHandler is null. If it isn't, call its addToDo method
+        // ask kotlin to check if the dbHandler is null. If it isn't, call its addToDo method
         // passing the specified ToDo Name
-        dbHandler?.addToDo(name)
+        dbHandler.addToDo(name)
     }
 }

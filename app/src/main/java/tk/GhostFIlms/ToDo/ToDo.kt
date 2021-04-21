@@ -1,4 +1,4 @@
-package tk.GhostFIlms.ToDo
+package tk.ghostfilms.toDo
 
 /**
  * This ToDo data class has three fields that map to the coulumns in the
