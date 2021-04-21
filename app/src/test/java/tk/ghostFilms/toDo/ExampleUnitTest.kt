@@ -1,4 +1,4 @@
-package tk.GhostFIlms.ToDo
+package tk.ghostFilms.toDo
 
 import org.junit.Test
 
