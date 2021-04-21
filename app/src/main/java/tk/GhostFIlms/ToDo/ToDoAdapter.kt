@@ -52,15 +52,20 @@ class ToDoAdapter (
     }
 
     /**
+     * Returns the number of items in the MutableList of ToDos
+     *
      * Returns the total number of items in the data set held by the adapter.
      *
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return todos.size
     }
 
     /**
+     * Initializes each of the items in the RecyclerView and maps the data in the MutableList of
+     * ToDos to it.
+     *
      * Called by RecyclerView to display the data at the specified position. This method should
      * update the contents of the [ToDoViewHolder.itemView] to reflect the item at the given
      * position.
@@ -98,8 +103,23 @@ class ToDoAdapter (
             // tell koltin that CheckBox isn't null. assign the name value in the current item to
             // text atribute of CheckBox
             todoCheckBox!!.isChecked = currentToDo.isChecked
-
+            
+            // Tell Kotlin that CheckBox isn't null
+            // set onCheckedChangeListener to it
+            todoCheckBox!!.setOnCheckedChangeListener { _, _ ->
+                // invert current value of isChecked field of the currentToDo
+                currentToDo.isChecked = !currentToDo.isChecked
+            }
         }
     }
 
+    /**
+     * This method gests called by the addToDo method in the MainActivity when the add button is
+     * clicked. It will call the DBHandler method that adds a ToDo into the database.
+     */
+    fun addToDo(dbHandler: DBHandler, name: String) {
+        // ask ktolin to check if the dbHandler is null. If it isn't, call its addToDo method
+        // passing the specified ToDo Name
+        dbHandler?.addToDo(name)
+    }
 }
