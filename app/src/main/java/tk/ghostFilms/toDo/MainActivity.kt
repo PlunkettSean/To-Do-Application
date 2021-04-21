@@ -1,4 +1,4 @@
-package tk.ghostfilms.toDo
+package tk.ghostFilms.toDo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

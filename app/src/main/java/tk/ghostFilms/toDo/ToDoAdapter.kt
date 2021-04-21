@@ -1,4 +1,4 @@
-package tk.ghostfilms.toDo
+package tk.ghostFilms.toDo
 
 import android.view.LayoutInflater
 import android.view.View
