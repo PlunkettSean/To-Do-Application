@@ -115,6 +115,25 @@ SQLiteOpenHelper(context, DATABASE_NAME, cursorFactory, DATABASE_VERSION){
             return list
         }
 
+    /**
+     * the method gets called when the delete button in the MainActivity gets clicked
+     * @param id the todo database id
+     */
+    fun deleteToDo(id: Int) {
+        // get a reference to the todoapp database
+        val db = writableDatabase
+
+        // Define delete statement
+        val query = "DELETE FROM " + TABLE_TODO_LIST +
+                " WHERE " + COLUMN_TODO_ID + " = " + id
+
+        // execute delete statement
+        db.execSQL(query)
+
+        // close reference to database
+        db.close()
+    }
+
     companion object {
         // initialize constants for the DB name and version
         private const val DATABASE_NAME = "todoapp.db"
